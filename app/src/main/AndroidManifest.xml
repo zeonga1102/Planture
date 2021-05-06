@@ -17,11 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.ImageClassification">
 
-
-        <activity
-            android:name=".ClassifierActivity"
-            android:label="@string/tfe_ic_app_name"
-            android:screenOrientation="portrait">
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,6 +25,12 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".ClassifierActivity"
+            android:label="@string/tfe_ic_app_name"
+            android:screenOrientation="portrait">
+
+        </activity>
     </application>
 
 </manifest>

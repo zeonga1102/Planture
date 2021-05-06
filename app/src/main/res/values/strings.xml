@@ -16,4 +16,8 @@
         <item>GPU</item>
         <item>NNAPI</item>
     </string-array>
+
+    <string name="title_home">Home</string>
+    <string name="title_community">Community</string>
+    <string name="title_myplants">MyPlants</string>
 </resources>
