@@ -21,7 +21,7 @@ import org.tensorflow.lite.examples.classification.tflite.Classifier.Device;
 import org.tensorflow.lite.support.common.TensorOperator;
 import org.tensorflow.lite.support.common.ops.NormalizeOp;
 
-/** This TensorFlow Lite classifier works with the quantized MobileNet model. */
+/** This TensorFlow Lite classifier works with the quantized MobileNet .model. */
 public class ClassifierQuantizedMobileNet extends Classifier {
 
   /**
