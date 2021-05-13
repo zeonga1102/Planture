@@ -318,4 +318,17 @@
             android:entries="@array/tfe_ic_devices"
             android:prompt="@string/tfe_ic_device" />
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/resultButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="result" />
+    </RelativeLayout>
 </LinearLayout>

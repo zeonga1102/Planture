@@ -16,11 +16,13 @@
 
 package org.tensorflow.lite.examples.classification;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Typeface;
 import android.media.ImageReader.OnImageAvailableListener;
 import android.os.SystemClock;
+import android.util.Log;
 import android.util.Size;
 import android.util.TypedValue;
 import android.widget.Toast;
@@ -31,6 +33,7 @@ import org.tensorflow.lite.examples.classification.env.Logger;
 import org.tensorflow.lite.examples.classification.tflite.Classifier;
 import org.tensorflow.lite.examples.classification.tflite.Classifier.Device;
 import org.tensorflow.lite.examples.classification.tflite.Classifier.Model;
+import org.tensorflow.lite.examples.classification.view.MainActivity;
 
 public class ClassifierActivity extends CameraActivity implements OnImageAvailableListener {
   private static final Logger LOGGER = new Logger();
@@ -82,6 +85,9 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
 
   @Override
   protected void processImage() {
+//    if(((MainActivity)MainActivity.mainContext).galleryBitmap != null) {
+//      rgbFrameBitmap = ((MainActivity) MainActivity.mainContext).galleryBitmap;
+//    }
     rgbFrameBitmap.setPixels(getRgbBytes(), 0, previewWidth, 0, 0, previewWidth, previewHeight);
     final int cropSize = Math.min(previewWidth, previewHeight);
 
@@ -101,11 +107,12 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
                     @Override
                     public void run() {
                       showResultsInBottomSheet(results);
-                      showFrameInfo(previewWidth + "x" + previewHeight);
-                      showCropInfo(imageSizeX + "x" + imageSizeY);
-                      showCameraResolution(cropSize + "x" + cropSize);
-                      showRotationInfo(String.valueOf(sensorOrientation));
-                      showInference(lastProcessingTimeMs + "ms");
+                      Log.e("ksy", results.get(0).getTitle()+", "+ results.get(0).getConfidence());
+//                      showFrameInfo(previewWidth + "x" + previewHeight);
+//                      showCropInfo(imageSizeX + "x" + imageSizeY);
+//                      showCameraResolution(cropSize + "x" + cropSize);
+//                      showRotationInfo(String.valueOf(sensorOrientation));
+//                      showInference(lastProcessingTimeMs + "ms");
                     }
                   });
             }
