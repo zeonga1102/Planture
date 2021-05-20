@@ -275,6 +275,7 @@ public abstract class CameraActivity extends AppCompatActivity
         intent.putExtra("result", recognitionTextView.getText());
         Log.e("ksy", "동영상: " + recognitionTextView.getText().toString());
         startActivityForResult(intent, 0);
+        finish();
       }
     });
   }

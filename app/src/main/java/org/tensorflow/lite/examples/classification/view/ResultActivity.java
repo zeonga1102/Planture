@@ -12,6 +12,7 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
 
 import org.jsoup.Jsoup;
@@ -35,6 +36,8 @@ public class ResultActivity extends AppCompatActivity {
 
     HashMap<String,String> map = new HashMap<>();
 
+    private MeasuredViewPager viewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +56,7 @@ public class ResultActivity extends AppCompatActivity {
 
         TextView textView = findViewById(R.id.text_explain);
 
-        ImageView imageView = findViewById(R.id.img_input);
+        //ImageView imageView = findViewById(R.id.img_input);
 
         BackgroundTask async=new BackgroundTask(flowerName);
         try {
@@ -68,9 +71,9 @@ public class ResultActivity extends AppCompatActivity {
         }
 
 
-        Picasso.get()
-                .load("https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg")
-                .into(imageView);
+//        Picasso.get()
+//                .load("https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg")
+//                .into(imageView);
 
 //        imgUrls.add("https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/View_from_the_Window_at_Le_Gras%2C_Joseph_Nic%C3%A9phore_Ni%C3%A9pce%2C_uncompressed_UMN_source.png/270px-View_from_the_Window_at_Le_Gras%2C_Joseph_Nic%C3%A9phore_Ni%C3%A9pce%2C_uncompressed_UMN_source.png");
 //        imgUrls.add("https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/View_from_the_Window_at_Le_Gras%2C_Joseph_Nic%C3%A9phore_Ni%C3%A9pce%2C_uncompressed_UMN_source.png/270px-View_from_the_Window_at_Le_Gras%2C_Joseph_Nic%C3%A9phore_Ni%C3%A9pce%2C_uncompressed_UMN_source.png");
@@ -78,11 +81,12 @@ public class ResultActivity extends AppCompatActivity {
 //        imgUrls.add("https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/View_from_the_Window_at_Le_Gras%2C_Joseph_Nic%C3%A9phore_Ni%C3%A9pce%2C_uncompressed_UMN_source.png/270px-View_from_the_Window_at_Le_Gras%2C_Joseph_Nic%C3%A9phore_Ni%C3%A9pce%2C_uncompressed_UMN_source.png");
 //        imgUrls.add("https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg");
 
-        ViewPager viewPager = findViewById(R.id.viewPager);
+        viewPager = findViewById(R.id.viewPager);
         viewPager.setClipToPadding(false);
         viewPager.setPadding(230,0,230,0);
         viewPager.setPageMargin(getResources().getDisplayMetrics().widthPixels / -9);
         viewPager.setAdapter(new ViewpagerAdapter(this, imgUrls));
+
     }
 
 }

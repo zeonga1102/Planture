@@ -4,39 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="25dp"
+    android:paddingTop="10dp"
+    android:paddingRight="25dp"
+    android:paddingBottom="25dp"
     tools:context=".view.ResultActivity">
 
-    <LinearLayout
+    <!--        <androidx.viewpager.widget.ViewPager-->
+    <org.tensorflow.lite.examples.classification.view.MeasuredViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/text_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/img_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            tools:srcCompat="@tools:sample/avatars" />
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewPager"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp"
+        app:tabBackground="@drawable/circle_indicator"/>
 
-        <TextView
-            android:id="@+id/text_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView1" />
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView1"
+        app:layout_constraintTop_toBottomOf="@id/tab_layout"
+        tools:layout_editor_absoluteX="25dp" />
 
-        <!--        <androidx.viewpager.widget.ViewPager-->
-        <org.tensorflow.lite.examples.classification.view.MeasuredViewPager
-            android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#2196F3" />
-
-        <TextView
-            android:id="@+id/text_explain"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView2" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/text_explain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView2"
+        app:layout_constraintTop_toBottomOf="@id/text_name" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

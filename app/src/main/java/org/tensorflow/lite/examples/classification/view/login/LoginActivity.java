@@ -3,6 +3,7 @@ package org.tensorflow.lite.examples.classification.view.login;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,15 +23,19 @@ import org.tensorflow.lite.examples.classification.view.MainActivity;
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
+    private FirebaseUser currentUser;
     private EditText editTextEmail;
     private EditText editTextPassword;
     private Button buttonLogIn;
     private Button buttonSignUp;
+    Context loginContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        loginContext = this;
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -42,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // SignUpActivity 연결
-                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                Intent intent = new Intent(loginContext, SignUpActivity.class);
                 startActivity(intent);
             }
         });
@@ -54,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (!editTextEmail.getText().toString().equals("") && !editTextPassword.getText().toString().equals("")) {
                     loginUser(editTextEmail.getText().toString(), editTextPassword.getText().toString());
                 } else {
-                    Toast.makeText(LoginActivity.this, "계정과 비밀번호를 입력하세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(loginContext, "계정과 비밀번호를 입력하세요.", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -62,9 +67,9 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                currentUser = firebaseAuth.getCurrentUser();
+                if (currentUser != null) {
+                    Intent intent = new Intent(loginContext, MainActivity.class);
                     startActivity(intent);
                     finish();
                 } else {
@@ -80,11 +85,11 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // 로그인 성공
-                            Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(loginContext, "로그인 성공", Toast.LENGTH_SHORT).show();
                             firebaseAuth.addAuthStateListener(firebaseAuthListener);
                         } else {
                             // 로그인 실패
-                            Toast.makeText(LoginActivity.this, "아이디 또는 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(loginContext, "아이디 또는 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -93,6 +98,14 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        currentUser = firebaseAuth.getCurrentUser();
+        if(currentUser != null){
+            Intent intent = new Intent(loginContext, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
     }
 
     @Override
