@@ -10,7 +10,7 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -19,18 +19,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.ImageClassification">
-        <activity android:name=".view.ResultActivity"></activity>
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.login.SignUpActivity"></activity>
+        <activity android:name=".view.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.ResultActivity" />
+        <activity android:name=".view.MainActivity">
+
+        </activity>
         <activity
             android:name=".ClassifierActivity"
             android:label="@string/tfe_ic_app_name"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
