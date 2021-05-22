@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/planture_color_primary"
     android:orientation="vertical"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
     tools:context=".view.login.SignUpActivity">
     ​
 
