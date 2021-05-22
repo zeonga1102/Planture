@@ -1,6 +1,7 @@
 package org.tensorflow.lite.examples.classification.view;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,10 +9,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import org.tensorflow.lite.examples.classification.R;
+import org.tensorflow.lite.examples.classification.model.Plant;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -20,17 +24,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MyPlantsRecyclerViewAdapter extends RecyclerView.Adapter {
     private Context ctx;
-    private List<String> names;
-    private List<String> imgUrls;
+    private List<String> names = new ArrayList<String>();
+    private List<String> imgUrls = new ArrayList<String>();
 
     private ImageView imgMyplatns;
     private TextView textMyplants;
     private ConstraintLayout panel;
 
-    public MyPlantsRecyclerViewAdapter(Context ctx, List<String> names, List<String> imgUrls) {
+    private List<Plant> myPlants;
+
+    public MyPlantsRecyclerViewAdapter(Context ctx) {
         this.ctx = ctx;
-        this.names = names;
-        this.imgUrls = imgUrls;
+    }
+
+    public void setMyPlants(List<Plant> myPlants){
+        this.myPlants = myPlants;
+        for(int i=0; i<myPlants.size(); i++){
+            this.names.add(myPlants.get(i).getName());
+            this.imgUrls.add(myPlants.get(i).getImgUrl());
+        }
     }
 
     @NonNull
@@ -47,6 +59,7 @@ public class MyPlantsRecyclerViewAdapter extends RecyclerView.Adapter {
                 .resize(400, 400)
                 .centerCrop()
                 .into(imgMyplatns);
+        //Glide.with(imgMyplatns.getContext()).load(imgUrls.get(position)).into(imgMyplatns);
 
         String name = names.get(position);
         textMyplants.setText(name);
@@ -64,7 +77,7 @@ public class MyPlantsRecyclerViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return names.size();
+        return myPlants.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

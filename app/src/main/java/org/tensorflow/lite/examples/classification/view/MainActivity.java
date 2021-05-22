@@ -19,9 +19,12 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.tensorflow.lite.examples.classification.ClassifierActivity;
 import org.tensorflow.lite.examples.classification.R;
+import org.tensorflow.lite.examples.classification.model.Plant;
 import org.tensorflow.lite.examples.classification.tflite.Classifier;
 
 import java.io.ByteArrayOutputStream;
@@ -46,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); //가로화면 안됨.
 
         mainContext = this;
+
+//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("myPlant");
+//        databaseReference.push().setValue(new Plant("산체스","https://commons.wikimedia.org/wiki/File:Helianthus_annuus_00001.jpg"));
+//        databaseReference.keepSynced(true);
 
         //floating action button==================================================
         fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);

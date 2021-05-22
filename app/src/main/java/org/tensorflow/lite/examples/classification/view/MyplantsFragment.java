@@ -15,9 +15,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+//import org.tensorflow.lite.examples.classification.FirebaseBroker;
 import org.tensorflow.lite.examples.classification.R;
+import org.tensorflow.lite.examples.classification.model.Plant;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyplantsFragment extends Fragment {
 
@@ -26,7 +35,7 @@ public class MyplantsFragment extends Fragment {
     private MyPlantsRecyclerViewAdapter adapter;
     private ArrayList<String> names = new ArrayList<>();
     private ArrayList<String> imgUrls = new ArrayList<>();
-
+    List<Plant> myPlants = new ArrayList<>();
 
     public static MyplantsFragment newInstance() {
         return new MyplantsFragment();
@@ -38,30 +47,46 @@ public class MyplantsFragment extends Fragment {
         Log.d("jalee", "onCreateView");
         View view = inflater.inflate(R.layout.fragment_myplants, container, false);
 
-        //firebase 연결하면 수정
-        names.add("planture");
-        names.add("planture");
-        names.add("planture");
-        names.add("planture");
-        names.add("add");
-
-        imgUrls.add("https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/View_from_the_Window_at_Le_Gras%2C_Joseph_Nic%C3%A9phore_Ni%C3%A9pce%2C_uncompressed_UMN_source.png/270px-View_from_the_Window_at_Le_Gras%2C_Joseph_Nic%C3%A9phore_Ni%C3%A9pce%2C_uncompressed_UMN_source.png");
-        imgUrls.add("https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/View_from_the_Window_at_Le_Gras%2C_Joseph_Nic%C3%A9phore_Ni%C3%A9pce%2C_uncompressed_UMN_source.png/270px-View_from_the_Window_at_Le_Gras%2C_Joseph_Nic%C3%A9phore_Ni%C3%A9pce%2C_uncompressed_UMN_source.png");
-        imgUrls.add("https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/View_from_the_Window_at_Le_Gras%2C_Joseph_Nic%C3%A9phore_Ni%C3%A9pce%2C_uncompressed_UMN_source.png/270px-View_from_the_Window_at_Le_Gras%2C_Joseph_Nic%C3%A9phore_Ni%C3%A9pce%2C_uncompressed_UMN_source.png");
-        imgUrls.add("https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/View_from_the_Window_at_Le_Gras%2C_Joseph_Nic%C3%A9phore_Ni%C3%A9pce%2C_uncompressed_UMN_source.png/270px-View_from_the_Window_at_Le_Gras%2C_Joseph_Nic%C3%A9phore_Ni%C3%A9pce%2C_uncompressed_UMN_source.png");
-        imgUrls.add("https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg");
-
-        recyclerView = view.findViewById(R.id.recycler_myplants);
-
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
-        recyclerView.setLayoutManager(layoutManager);
-
-        recyclerView.addItemDecoration(new MyPlantsRecyclerViewDecoration(getActivity()));
-
-        adapter = new MyPlantsRecyclerViewAdapter(getActivity(), names, imgUrls);
-        recyclerView.setAdapter(adapter);
+        init(view);
+        initData();
 
         return view;
+    }
+
+    private void initData(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference dbRef = database.getReference().child("myPlant");
+
+        dbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                myPlants.clear();
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Plant plant = snapshot.getValue(Plant.class);
+                    myPlants.add(plant);
+                    Log.i("plantSize",Integer.toString(myPlants.size()));
+                }
+                RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
+                recyclerView.setLayoutManager(layoutManager);
+
+                recyclerView.addItemDecoration(new MyPlantsRecyclerViewDecoration(getActivity()));
+
+                adapter.setMyPlants(myPlants);
+                adapter.notifyDataSetChanged();
+
+                recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void init(View view){
+        recyclerView = view.findViewById(R.id.recycler_myplants);
+        adapter = new MyPlantsRecyclerViewAdapter(getActivity());
     }
 
     @Override
