@@ -1,45 +1,44 @@
 package org.tensorflow.lite.examples.classification.model;
 
 public class Plant {
-    private String uid;
     private String key;
-
-    public Plant(){}
-
-    public Plant(String name, String imgUrl) {
-        this.name = name;
-        this.imgUrl = imgUrl;
-    }
-
     private String name;
-    private String regDate;
     private String desc;
     private String imgUrl;
+    private String regDate;
     private String waterTime;
 
-    public Plant(String uid, String key, String name, String regDate, String desc, String imgUrl, String waterTime) {
-        this.uid = uid;
-        this.key = key;
+    public Plant(){}
+    public Plant(String name, String desc, String imgUrl, String regDate) {
         this.name = name;
-        this.regDate = regDate;
         this.desc = desc;
         this.imgUrl = imgUrl;
+        this.regDate = regDate;
+    }
+    public Plant(String key, String name, String desc, String imgUrl, String regDate, String waterTime) {
+        this.key = key;
+        this.name = name;
+        this.desc = desc;
+        this.imgUrl = imgUrl;
+        this.regDate = regDate;
         this.waterTime = waterTime;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getKey() { return key; }
+    public void setKey(String key) { this.key = key; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public String getImgUrl() {
-        return imgUrl;
-    }
+    public String getImgUrl() { return imgUrl; }
+    public void setImgUrl(String imgUrl) { this.imgUrl = imgUrl; }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
+    public String getRegDate() { return regDate; }
+    public void setRegDate(String regDate) { this.regDate = regDate; }
+
+    public String getDesc() { return desc; }
+    public void setDesc(String desc) { this.desc = desc; }
+
+    public String getWaterTime() { return waterTime; }
+    public void setWaterTime(String waterTime) { this.waterTime = waterTime; }
 }

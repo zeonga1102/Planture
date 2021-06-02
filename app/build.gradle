@@ -41,6 +41,9 @@ android {
        }
    }
 
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -53,6 +56,13 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-database:0.5.3'
     implementation 'com.google.firebase:firebase-auth:21.0.1'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    //갤러리 이미지선택
+    implementation 'com.github.esafirm.android-image-picker:imagepicker:2.4.1'
+    //퍼미션 라이브러리
+    implementation 'gun0912.ted:tedpermission:2.1.0'
+    implementation 'com.google.firebase:firebase-storage:20.0.0'
+    annotationProcessor "com.github.bumptech.glide:compiler:4.11.0"
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     supportImplementation project(":lib_support")
     taskApiImplementation project(":lib_task_api")

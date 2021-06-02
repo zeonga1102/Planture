@@ -15,19 +15,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import org.tensorflow.lite.examples.classification.ClassifierActivity;
 import org.tensorflow.lite.examples.classification.R;
-import org.tensorflow.lite.examples.classification.model.Plant;
 import org.tensorflow.lite.examples.classification.tflite.Classifier;
+import org.tensorflow.lite.examples.classification.view.community.CommunityFragment;
+import org.tensorflow.lite.examples.classification.view.myplants.MyplantsFragment;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -53,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 //        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("myPlant");
 //        databaseReference.push().setValue(new Plant("산체스","https://commons.wikimedia.org/wiki/File:Helianthus_annuus_00001.jpg"));
 //        databaseReference.keepSynced(true);
+
 
         //floating action button==================================================
         fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);

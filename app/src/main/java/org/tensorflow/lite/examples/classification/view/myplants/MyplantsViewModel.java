@@ -1,4 +1,4 @@
-package org.tensorflow.lite.examples.classification.view;
+package org.tensorflow.lite.examples.classification.view.myplants;
 
 import androidx.lifecycle.ViewModel;
 

@@ -7,4 +7,6 @@
     <color name="tfe_semi_transparent">#66000000</color>
 
     <color name="planture_color_primary">#f6fff0</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
 </resources>

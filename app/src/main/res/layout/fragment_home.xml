@@ -5,10 +5,66 @@
     android:layout_height="match_parent"
     tools:context=".view.HomeFragment">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="home"
-        android:textSize="30sp" />
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PLANTURE"
+            android:textSize="70dp"
+            android:textColor="#000000"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center"/>
+
+        <LinearLayout
+            android:id="@+id/layout_camera"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:background="@drawable/roundspace_btn"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/camera"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_album"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:background="@drawable/roundspace_btn"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/album" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_text"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:background="@drawable/roundspace_btn"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/text"/>
+        </LinearLayout>
+    </LinearLayout>
+
 
 </FrameLayout>

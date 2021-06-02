@@ -54,7 +54,10 @@ public class ResultActivity extends AppCompatActivity {
         String result = (String)intent.getExtras().get("result");
         String flowerName = map.get(result);
 
-        TextView textView = findViewById(R.id.text_explain);
+        TextView textExplain = findViewById(R.id.text_explain);
+        TextView textName = findViewById(R.id.text_name);
+
+        textName.setText(flowerName);
 
         //ImageView imageView = findViewById(R.id.img_input);
 
@@ -63,23 +66,12 @@ public class ResultActivity extends AppCompatActivity {
             CrawlVo vo = async.execute().get();
             imgUrls = vo.getImgSrcList();
 //            picture.setImageBitmap(vo.getImgSrcList().get(2));
-            textView.setText(vo.getContents());
+            textExplain.setText(vo.getContents());
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
-//        Picasso.get()
-//                .load("https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg")
-//                .into(imageView);
-
-//        imgUrls.add("https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/View_from_the_Window_at_Le_Gras%2C_Joseph_Nic%C3%A9phore_Ni%C3%A9pce%2C_uncompressed_UMN_source.png/270px-View_from_the_Window_at_Le_Gras%2C_Joseph_Nic%C3%A9phore_Ni%C3%A9pce%2C_uncompressed_UMN_source.png");
-//        imgUrls.add("https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/View_from_the_Window_at_Le_Gras%2C_Joseph_Nic%C3%A9phore_Ni%C3%A9pce%2C_uncompressed_UMN_source.png/270px-View_from_the_Window_at_Le_Gras%2C_Joseph_Nic%C3%A9phore_Ni%C3%A9pce%2C_uncompressed_UMN_source.png");
-//        imgUrls.add("https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/View_from_the_Window_at_Le_Gras%2C_Joseph_Nic%C3%A9phore_Ni%C3%A9pce%2C_uncompressed_UMN_source.png/270px-View_from_the_Window_at_Le_Gras%2C_Joseph_Nic%C3%A9phore_Ni%C3%A9pce%2C_uncompressed_UMN_source.png");
-//        imgUrls.add("https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/View_from_the_Window_at_Le_Gras%2C_Joseph_Nic%C3%A9phore_Ni%C3%A9pce%2C_uncompressed_UMN_source.png/270px-View_from_the_Window_at_Le_Gras%2C_Joseph_Nic%C3%A9phore_Ni%C3%A9pce%2C_uncompressed_UMN_source.png");
-//        imgUrls.add("https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg");
 
         viewPager = findViewById(R.id.viewPager);
         viewPager.setClipToPadding(false);

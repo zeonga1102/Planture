@@ -32,8 +32,9 @@
         android:layout_marginBottom="10dp"
         android:clickable="true"
         android:visibility="invisible"
+        app:backgroundTint="@color/tfe_color_primary"
         app:fabSize="auto"
-        app:srcCompat="@android:drawable/ic_menu_search" />
+        app:srcCompat="@drawable/text" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/galleryFloating"
@@ -45,8 +46,9 @@
         android:layout_marginBottom="10dp"
         android:clickable="true"
         android:visibility="invisible"
+        app:backgroundTint="@color/tfe_color_primary"
         app:fabSize="auto"
-        app:srcCompat="@android:drawable/ic_menu_gallery" />
+        app:srcCompat="@drawable/album" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/cameraFloating"
@@ -58,8 +60,9 @@
         android:layout_marginBottom="10dp"
         android:clickable="true"
         android:visibility="invisible"
+        app:backgroundTint="@color/tfe_color_primary"
         app:fabSize="auto"
-        app:srcCompat="@android:drawable/ic_menu_camera" />
+        app:srcCompat="@drawable/camera" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/mainFloating"
@@ -70,7 +73,8 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
         android:clickable="true"
+        app:backgroundTint="@color/tfe_color_primary_dark"
         app:fabSize="auto"
-        app:srcCompat="@android:drawable/ic_search_category_default" />
+        app:srcCompat="@android:drawable/ic_menu_search" />
 
 </RelativeLayout>
