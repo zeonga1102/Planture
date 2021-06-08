@@ -54,6 +54,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.UiThread;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import java.nio.ByteBuffer;
+import java.util.HashMap;
 import java.util.List;
 import org.tensorflow.lite.examples.classification.env.ImageUtils;
 import org.tensorflow.lite.examples.classification.env.Logger;
@@ -99,15 +100,15 @@ public abstract class CameraActivity extends AppCompatActivity
       rotationTextView,
       inferenceTimeTextView;
   protected ImageView bottomSheetArrowImageView;
-  private ImageView plusImageView, minusImageView;
-  private Spinner modelSpinner;
-  private Spinner deviceSpinner;
-  private TextView threadsTextView;
+//  private ImageView plusImageView, minusImageView;
+//  private Spinner modelSpinner;
+//  private Spinner deviceSpinner;
+//  private TextView threadsTextView;
   private Button resultButton;
 
-  private Model model = Model.QUANTIZED_EFFICIENTNET;
+  private Model model = Model.QUANTIZED_MOBILENET;
   private Device device = Device.CPU;
-  private int numThreads = -1;
+  private int numThreads = 1;
 
   Context cameraContext;
 
@@ -127,11 +128,11 @@ public abstract class CameraActivity extends AppCompatActivity
       requestPermission();
     }
 
-    threadsTextView = findViewById(R.id.threads);
-    plusImageView = findViewById(R.id.plus);
-    minusImageView = findViewById(R.id.minus);
-    modelSpinner = findViewById(R.id.model_spinner);
-    deviceSpinner = findViewById(R.id.device_spinner);
+//    threadsTextView = findViewById(R.id.threads);
+//    plusImageView = findViewById(R.id.plus);
+//    minusImageView = findViewById(R.id.minus);
+//    modelSpinner = findViewById(R.id.model_spinner);
+//    deviceSpinner = findViewById(R.id.device_spinner);
     bottomSheetLayout = findViewById(R.id.bottom_sheet_layout);
     gestureLayout = findViewById(R.id.gesture_layout);
     sheetBehavior = BottomSheetBehavior.from(bottomSheetLayout);
@@ -192,21 +193,21 @@ public abstract class CameraActivity extends AppCompatActivity
     recognition2TextView = findViewById(R.id.detected_item2);
     recognition2ValueTextView = findViewById(R.id.detected_item2_value);
 
-    frameValueTextView = findViewById(R.id.frame_info);
-    cropValueTextView = findViewById(R.id.crop_info);
-    cameraResolutionTextView = findViewById(R.id.view_info);
-    rotationTextView = findViewById(R.id.rotation_info);
-    inferenceTimeTextView = findViewById(R.id.inference_info);
+//    frameValueTextView = findViewById(R.id.frame_info);
+//    cropValueTextView = findViewById(R.id.crop_info);
+//    cameraResolutionTextView = findViewById(R.id.view_info);
+//    rotationTextView = findViewById(R.id.rotation_info);
+//    inferenceTimeTextView = findViewById(R.id.inference_info);
 
-    modelSpinner.setOnItemSelectedListener(this);
-    deviceSpinner.setOnItemSelectedListener(this);
-
-    plusImageView.setOnClickListener(this);
-    minusImageView.setOnClickListener(this);
-
-    model = Model.valueOf(modelSpinner.getSelectedItem().toString().toUpperCase());
-    device = Device.valueOf(deviceSpinner.getSelectedItem().toString());
-    numThreads = Integer.parseInt(threadsTextView.getText().toString().trim());
+//    modelSpinner.setOnItemSelectedListener(this);
+//    deviceSpinner.setOnItemSelectedListener(this);
+//
+//    plusImageView.setOnClickListener(this);
+//    minusImageView.setOnClickListener(this);
+//
+//    model = Model.valueOf(modelSpinner.getSelectedItem().toString().toUpperCase());
+//    device = Device.valueOf(deviceSpinner.getSelectedItem().toString());
+//    numThreads = Integer.parseInt(threadsTextView.getText().toString().trim());
   }
 
   protected int[] getRgbBytes() {
@@ -547,10 +548,18 @@ public abstract class CameraActivity extends AppCompatActivity
 
   @UiThread
   protected void showResultsInBottomSheet(List<Recognition> results) {
+    HashMap<String,String> map = new HashMap<>();
+    map.put("0", "스투키");
+    map.put("1", "장미");
+    map.put("2", "해바라기");
+    map.put("3", "폼폼");
+    map.put("4", "카네이션");
+    map.put("5", "명자란");
+
     if (results != null && results.size() >= 3) {
       Recognition recognition = results.get(0);
       if (recognition != null) {
-        if (recognition.getTitle() != null) recognitionTextView.setText(recognition.getTitle());
+        if (recognition.getTitle() != null) recognitionTextView.setText(map.get(recognition.getTitle()));
         if (recognition.getConfidence() != null)
           recognitionValueTextView.setText(
               String.format("%.2f", (100 * recognition.getConfidence())) + "%");
@@ -558,7 +567,7 @@ public abstract class CameraActivity extends AppCompatActivity
 
       Recognition recognition1 = results.get(1);
       if (recognition1 != null) {
-        if (recognition1.getTitle() != null) recognition1TextView.setText(recognition1.getTitle());
+        if (recognition1.getTitle() != null) recognition1TextView.setText(map.get(recognition1.getTitle()));
         if (recognition1.getConfidence() != null)
           recognition1ValueTextView.setText(
               String.format("%.2f", (100 * recognition1.getConfidence())) + "%");
@@ -566,7 +575,7 @@ public abstract class CameraActivity extends AppCompatActivity
 
       Recognition recognition2 = results.get(2);
       if (recognition2 != null) {
-        if (recognition2.getTitle() != null) recognition2TextView.setText(recognition2.getTitle());
+        if (recognition2.getTitle() != null) recognition2TextView.setText(map.get(recognition2.getTitle()));
         if (recognition2.getConfidence() != null)
           recognition2ValueTextView.setText(
               String.format("%.2f", (100 * recognition2.getConfidence())) + "%");
@@ -598,41 +607,41 @@ public abstract class CameraActivity extends AppCompatActivity
     return model;
   }
 
-  private void setModel(Model model) {
-    if (this.model != model) {
-      LOGGER.d("Updating  model: " + model);
-      this.model = model;
-      onInferenceConfigurationChanged();
-    }
-  }
+//  private void setModel(Model model) {
+//    if (this.model != model) {
+//      LOGGER.d("Updating  model: " + model);
+//      this.model = model;
+//      onInferenceConfigurationChanged();
+//    }
+//  }
 
   protected Device getDevice() {
     return device;
   }
 
-  private void setDevice(Device device) {
-    if (this.device != device) {
-      LOGGER.d("Updating  device: " + device);
-      this.device = device;
-      final boolean threadsEnabled = device == Device.CPU;
-      plusImageView.setEnabled(threadsEnabled);
-      minusImageView.setEnabled(threadsEnabled);
-      threadsTextView.setText(threadsEnabled ? String.valueOf(numThreads) : "N/A");
-      onInferenceConfigurationChanged();
-    }
-  }
+//  private void setDevice(Device device) {
+//    if (this.device != device) {
+//      LOGGER.d("Updating  device: " + device);
+//      this.device = device;
+//      final boolean threadsEnabled = device == Device.CPU;
+//      plusImageView.setEnabled(threadsEnabled);
+//      minusImageView.setEnabled(threadsEnabled);
+//      threadsTextView.setText(threadsEnabled ? String.valueOf(numThreads) : "N/A");
+//      onInferenceConfigurationChanged();
+//    }
+//  }
 
   protected int getNumThreads() {
     return numThreads;
   }
 
-  private void setNumThreads(int numThreads) {
-    if (this.numThreads != numThreads) {
-      LOGGER.d("Updating  numThreads: " + numThreads);
-      this.numThreads = numThreads;
-      onInferenceConfigurationChanged();
-    }
-  }
+//  private void setNumThreads(int numThreads) {
+//    if (this.numThreads != numThreads) {
+//      LOGGER.d("Updating  numThreads: " + numThreads);
+//      this.numThreads = numThreads;
+//      onInferenceConfigurationChanged();
+//    }
+//  }
 
   protected abstract void processImage();
 
@@ -646,30 +655,30 @@ public abstract class CameraActivity extends AppCompatActivity
 
   @Override
   public void onClick(View v) {
-    if (v.getId() == R.id.plus) {
-      String threads = threadsTextView.getText().toString().trim();
-      int numThreads = Integer.parseInt(threads);
-      if (numThreads >= 9) return;
-      setNumThreads(++numThreads);
-      threadsTextView.setText(String.valueOf(numThreads));
-    } else if (v.getId() == R.id.minus) {
-      String threads = threadsTextView.getText().toString().trim();
-      int numThreads = Integer.parseInt(threads);
-      if (numThreads == 1) {
-        return;
-      }
-      setNumThreads(--numThreads);
-      threadsTextView.setText(String.valueOf(numThreads));
-    }
+//    if (v.getId() == R.id.plus) {
+//      String threads = threadsTextView.getText().toString().trim();
+//      int numThreads = Integer.parseInt(threads);
+//      if (numThreads >= 9) return;
+//      setNumThreads(++numThreads);
+//      threadsTextView.setText(String.valueOf(numThreads));
+//    } else if (v.getId() == R.id.minus) {
+//      String threads = threadsTextView.getText().toString().trim();
+//      int numThreads = Integer.parseInt(threads);
+//      if (numThreads == 1) {
+//        return;
+//      }
+//      setNumThreads(--numThreads);
+//      threadsTextView.setText(String.valueOf(numThreads));
+//    }
   }
 
   @Override
   public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-    if (parent == modelSpinner) {
-      setModel(Model.valueOf(parent.getItemAtPosition(pos).toString().toUpperCase()));
-    } else if (parent == deviceSpinner) {
-      setDevice(Device.valueOf(parent.getItemAtPosition(pos).toString()));
-    }
+//    if (parent == modelSpinner) {
+//      setModel(Model.valueOf(parent.getItemAtPosition(pos).toString().toUpperCase()));
+//    } else if (parent == deviceSpinner) {
+//      setDevice(Device.valueOf(parent.getItemAtPosition(pos).toString()));
+//    }
   }
 
   @Override

@@ -34,7 +34,7 @@ public class ResultActivity extends AppCompatActivity {
 
     List<String> imgUrls  = new ArrayList<String>();
 
-    HashMap<String,String> map = new HashMap<>();
+    //HashMap<String,String> map = new HashMap<>();
 
     private MeasuredViewPager viewPager;
 
@@ -42,17 +42,18 @@ public class ResultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        map.put("0", "스투키");
-        map.put("1", "장미");
-        map.put("2", "해바라기");
-        map.put("3", "폼폼");
-        map.put("4", "카네이션");
-        map.put("5", "명자란");
+//        map.put("0", "스투키");
+//        map.put("1", "장미");
+//        map.put("2", "해바라기");
+//        map.put("3", "폼폼");
+//        map.put("4", "카네이션");
+//        map.put("5", "명자란");
 
         setContentView(R.layout.activity_result);
         Intent intent = getIntent();
-        String result = (String)intent.getExtras().get("result");
-        String flowerName = map.get(result);
+        //String result = (String)intent.getExtras().get("result");
+        String flowerName = (String)intent.getExtras().get("result");
+        //String flowerName = map.get(result);
 
         TextView textExplain = findViewById(R.id.text_explain);
         TextView textName = findViewById(R.id.text_name);

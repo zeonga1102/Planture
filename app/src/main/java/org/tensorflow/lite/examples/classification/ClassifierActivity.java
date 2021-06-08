@@ -21,12 +21,14 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Typeface;
 import android.media.ImageReader.OnImageAvailableListener;
+import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
 import android.util.Size;
 import android.util.TypedValue;
 import android.widget.Toast;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import org.tensorflow.lite.examples.classification.env.BorderedText;
 import org.tensorflow.lite.examples.classification.env.Logger;
@@ -34,6 +36,7 @@ import org.tensorflow.lite.examples.classification.tflite.Classifier;
 import org.tensorflow.lite.examples.classification.tflite.Classifier.Device;
 import org.tensorflow.lite.examples.classification.tflite.Classifier.Model;
 import org.tensorflow.lite.examples.classification.view.MainActivity;
+import org.tensorflow.lite.examples.classification.view.MeasuredViewPager;
 
 public class ClassifierActivity extends CameraActivity implements OnImageAvailableListener {
   private static final Logger LOGGER = new Logger();
@@ -85,11 +88,15 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
 
   @Override
   protected void processImage() {
-//    if(((MainActivity)MainActivity.mainContext).galleryBitmap != null) {
-//      rgbFrameBitmap = ((MainActivity) MainActivity.mainContext).galleryBitmap;
-//    }
     rgbFrameBitmap.setPixels(getRgbBytes(), 0, previewWidth, 0, 0, previewWidth, previewHeight);
     final int cropSize = Math.min(previewWidth, previewHeight);
+    HashMap<String,String> map = new HashMap<>();
+    map.put("0", "스투키");
+    map.put("1", "장미");
+    map.put("2", "해바라기");
+    map.put("3", "폼폼");
+    map.put("4", "카네이션");
+    map.put("5", "명자란");
 
     runInBackground(
         new Runnable() {

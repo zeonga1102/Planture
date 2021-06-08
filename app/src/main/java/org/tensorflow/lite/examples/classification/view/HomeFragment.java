@@ -22,6 +22,7 @@ import org.tensorflow.lite.examples.classification.R;
 import org.tensorflow.lite.examples.classification.tflite.Classifier;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
@@ -87,6 +88,13 @@ public class HomeFragment extends Fragment {
 
         if(requestCode== 1 && resultCode==RESULT_OK && data!=null) {
             //response에 getData , return data 부분 추가해주어야 한다
+            HashMap<String,String> map = new HashMap<>();
+            map.put("0", "스투키");
+            map.put("1", "장미");
+            map.put("2", "해바라기");
+            map.put("3", "폼폼");
+            map.put("4", "카네이션");
+            map.put("5", "명자란");
 
             Uri photoUri = data.getData();
             //bitmap 이용
@@ -95,7 +103,7 @@ public class HomeFragment extends Fragment {
                 Classifier classifier = Classifier.create(getActivity(), Classifier.Model.QUANTIZED_MOBILENET, Classifier.Device.CPU, 1);
                 final List<Classifier.Recognition> results = classifier.recognizeImage(galleryBitmap, 0);
                 Intent intent = new Intent(mainContext, ResultActivity.class);
-                intent.putExtra("result", results.get(0).getTitle());
+                intent.putExtra("result", map.get(results.get(0).getTitle()));
                 startActivityForResult(intent, 0);
             } catch (IOException e) {
                 e.printStackTrace();
