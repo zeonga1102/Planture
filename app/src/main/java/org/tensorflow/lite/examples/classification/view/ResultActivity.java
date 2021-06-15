@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -50,6 +51,8 @@ public class ResultActivity extends AppCompatActivity {
 //        map.put("5", "명자란");
 
         setContentView(R.layout.activity_result);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         Intent intent = getIntent();
         //String result = (String)intent.getExtras().get("result");
         String flowerName = (String)intent.getExtras().get("result");

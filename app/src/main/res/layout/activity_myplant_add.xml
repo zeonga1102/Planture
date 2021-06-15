@@ -9,12 +9,23 @@
         android:weightSum="1"
         tools:context=".view.myplants.MyPlantAddActivity">
 
+        <TextView
+            android:id="@+id/addText"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="식물 등록"
+            android:textSize="18sp" />
+
         <ImageView
             android:id="@+id/edit_plantImage"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
             android:layout_weight="1"
@@ -22,29 +33,14 @@
 
         <ImageView
             android:id="@+id/image_add"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/roundspace_btn"
             android:clickable="true"
             android:padding="5dp"
-            app:srcCompat="@drawable/ic_baseline_add" />
-
-        <EditText
-            android:id="@+id/edit_plantName"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@null"
-            android:gravity="center_vertical"
-            android:hint="식물 별명(이름)"
-            android:inputType="text"
-            android:maxLines="1"
-            android:textColor="@color/black"
-            android:textColorHint="#aeaeae"
-            android:textSize="20dp" />
+            app:srcCompat="@drawable/image_add" />
 
         <View
             android:layout_width="match_parent"
@@ -55,10 +51,33 @@
             android:layout_marginBottom="10dp"
             android:background="#aeaeae" />
 
-        <EditText
-            android:id="@+id/edit_plantDesc"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="식물 별명(이름)"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textColorHint="#aeaeae"
+            android:textSize="20dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_plantName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -68,7 +87,75 @@
             android:inputType="text"
             android:textColor="@color/black"
             android:textColorHint="#aeaeae"
+            android:textSize="18sp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_plantDesc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="#aeaeae" />
+
+        <Switch
+            android:id="@+id/switch_add"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:checked="true"
+            android:text="물 주기 설정"
             android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:gravity="right"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="물 주기 빈도"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textColorHint="#aeaeae"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/edit_plantWaterPeriod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:maxLength="2" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="5dp"
+                android:text="일 마다 한번"
+                android:textSize="18sp" />
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"

@@ -11,6 +11,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -21,6 +22,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,9 +55,11 @@ public class MyPlantAddActivity extends AppCompatActivity {
 
     EditText plantName;
     EditText plantDesc;
+    EditText plantWaterPeriod;
     TextView registerButton;
     ImageView plantImage;
-    ImageView image_add;
+    ImageView imageAdd;
+    Switch switchAdd;
 
     private File tempFile = null;
     Uri photoUri = null;
@@ -68,6 +72,7 @@ public class MyPlantAddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_myplant_add);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_myplant_add);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         context = this;
 
@@ -79,15 +84,39 @@ public class MyPlantAddActivity extends AppCompatActivity {
 
         plantName = binding.editPlantName;
         plantDesc = binding.editPlantDesc;
+        plantWaterPeriod = binding.editPlantWaterPeriod;
         registerButton = binding.registerButton;
         plantImage = binding.editPlantImage;
-        image_add = binding.imageAdd;
+        imageAdd = binding.imageAdd;
+        switchAdd = binding.switchAdd;
+
+        switchAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(switchAdd.isChecked()){
+                    plantWaterPeriod.setEnabled(true);
+                }else{
+                    plantWaterPeriod.setEnabled(false);
+                }
+            }
+        });
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String name = plantName.getText().toString().trim();
                 String desc = plantDesc.getText().toString();
+
+                int waterPeriod;
+                if(switchAdd.isChecked()) {
+                    if (plantWaterPeriod.getText() == null) {
+                        waterPeriod = 0;
+                    } else {
+                        waterPeriod = Integer.parseInt(plantWaterPeriod.getText().toString());
+                    }
+                }else{
+                    waterPeriod = 0;
+                }
 
                 Date date = new Date(System.currentTimeMillis());
                 SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
@@ -120,6 +149,8 @@ public class MyPlantAddActivity extends AppCompatActivity {
                                     Plant plant = new Plant();
                                     plant.setName(name);
                                     plant.setDesc(desc);
+                                    plant.setWaterPeriod(waterPeriod);
+                                    plant.setWaterTime(waterPeriod);
                                     plant.setImgUrl(imageUrl.getResult().toString());
                                     plant.setRegDate(regDate);
 
@@ -141,7 +172,7 @@ public class MyPlantAddActivity extends AppCompatActivity {
             }
         });
 
-        image_add.setOnClickListener(new View.OnClickListener() {
+        imageAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 camera_permission();

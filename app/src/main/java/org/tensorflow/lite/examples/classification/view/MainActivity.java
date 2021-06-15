@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -20,12 +22,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.tensorflow.lite.examples.classification.ClassifierActivity;
+import org.tensorflow.lite.examples.classification.DateReceiver;
 import org.tensorflow.lite.examples.classification.R;
 import org.tensorflow.lite.examples.classification.tflite.Classifier;
 import org.tensorflow.lite.examples.classification.view.community.CommunityFragment;
 import org.tensorflow.lite.examples.classification.view.myplants.MyplantsFragment;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private Animation fab_open, fab_close;
     private Boolean isFabOpen = false;
     private FloatingActionButton mainFloating, cameraFloating, galleryFloting, textFloating;
+
+    private BroadcastReceiver dateReceiver;
 
     BottomNavigationView bottomNavigationView;
 
@@ -46,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); //가로화면 안됨.
 
         mainContext = this;
+        dateReceiver = new DateReceiver();
 
 //        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("myPlant");
 //        databaseReference.push().setValue(new Plant("산체스","https://commons.wikimedia.org/wiki/File:Helianthus_annuus_00001.jpg"));
@@ -90,6 +97,20 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_DATE_CHANGED);
+        registerReceiver(dateReceiver, filter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(dateReceiver);
+    }
+
     View.OnClickListener onClickListener = new View.OnClickListener(){
         @Override
         public void onClick(View v) {
@@ -117,6 +138,14 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         //이미지 뷰를 클릭하면 시작되는 함수
 
+        HashMap<String,String> map = new HashMap<>();
+        map.put("0", "스투키");
+        map.put("1", "장미");
+        map.put("2", "해바라기");
+        map.put("3", "폼폼");
+        map.put("4", "카네이션");
+        map.put("5", "명자란");
+
         if(requestCode== 1 && resultCode==RESULT_OK && data!=null) {
             //response에 getData , return data 부분 추가해주어야 한다
 
@@ -127,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 Classifier classifier = Classifier.create(this, Classifier.Model.QUANTIZED_MOBILENET, Classifier.Device.CPU, 1);
                 final List<Classifier.Recognition> results = classifier.recognizeImage(galleryBitmap, 0);
                 Intent intent = new Intent(mainContext, ResultActivity.class);
-                intent.putExtra("result", results.get(0).getTitle());
+                intent.putExtra("result", map.get(results.get(0).getTitle()));
                 startActivityForResult(intent, 0);
             } catch (IOException e) {
                 e.printStackTrace();

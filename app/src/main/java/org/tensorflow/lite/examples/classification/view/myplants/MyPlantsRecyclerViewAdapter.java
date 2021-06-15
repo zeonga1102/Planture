@@ -115,6 +115,18 @@ public class MyPlantsRecyclerViewAdapter extends RecyclerView.Adapter {
         String name = myPlants.get(position).getName();
         binding.textMyplants.setText(name);
 
+        int waterTime;
+        if(myPlants.get(position).getWaterPeriod() == 0){
+            binding.textWater.setText("");
+        }else {
+            waterTime = myPlants.get(position).getWaterTime();
+            if (waterTime == 0) {
+                binding.textWater.setText("물");
+            } else {
+                binding.textWater.setText(waterTime + "일 후 물");
+            }
+        }
+
         binding.panelMyplants.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

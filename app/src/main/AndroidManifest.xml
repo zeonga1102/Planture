@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.tensorflow.lite.examples.classification">
 
     <uses-sdk />
@@ -19,7 +20,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.ImageClassification">
-        <activity android:name=".view.myplants.MyPlantDetailActivity"></activity>
+        <receiver
+            android:name=".DateReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
+
+        <activity android:name=".view.myplants.MyPlantDetailActivity" />
         <activity android:name=".view.myplants.MyPlantAddActivity" />
         <activity android:name=".view.login.SignUpActivity" />
         <activity android:name=".view.login.LoginActivity">

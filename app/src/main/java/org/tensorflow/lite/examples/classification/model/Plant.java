@@ -6,7 +6,8 @@ public class Plant {
     private String desc;
     private String imgUrl;
     private String regDate;
-    private String waterTime;
+    private int waterPeriod;
+    private int waterTime;
 
     public Plant(){}
     public Plant(String name, String desc, String imgUrl, String regDate) {
@@ -15,12 +16,13 @@ public class Plant {
         this.imgUrl = imgUrl;
         this.regDate = regDate;
     }
-    public Plant(String key, String name, String desc, String imgUrl, String regDate, String waterTime) {
+    public Plant(String key, String name, String desc, String imgUrl, String regDate, int waterPeriod, int waterTime) {
         this.key = key;
         this.name = name;
         this.desc = desc;
         this.imgUrl = imgUrl;
         this.regDate = regDate;
+        this.waterPeriod = waterPeriod;
         this.waterTime = waterTime;
     }
 
@@ -39,6 +41,10 @@ public class Plant {
     public String getDesc() { return desc; }
     public void setDesc(String desc) { this.desc = desc; }
 
-    public String getWaterTime() { return waterTime; }
-    public void setWaterTime(String waterTime) { this.waterTime = waterTime; }
+    public int getWaterPeriod() { return waterPeriod; }
+
+    public void setWaterPeriod(int waterPeriod) { this.waterPeriod = waterPeriod; }
+
+    public int getWaterTime() { return waterTime; }
+    public void setWaterTime(int waterTime) { this.waterTime = waterTime; }
 }

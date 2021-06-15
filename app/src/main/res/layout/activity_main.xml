@@ -32,7 +32,7 @@
         android:layout_marginBottom="10dp"
         android:clickable="true"
         android:visibility="invisible"
-        app:backgroundTint="@color/tfe_color_primary"
+        app:backgroundTint="#90C31F"
         app:fabSize="auto"
         app:srcCompat="@drawable/text" />
 
@@ -73,7 +73,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
         android:clickable="true"
-        app:backgroundTint="@color/tfe_color_primary_dark"
+        app:backgroundTint="#90C31F"
         app:fabSize="auto"
         app:srcCompat="@android:drawable/ic_menu_search" />
 
