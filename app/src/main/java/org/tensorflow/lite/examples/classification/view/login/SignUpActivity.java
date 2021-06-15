@@ -82,7 +82,7 @@ public class SignUpActivity extends AppCompatActivity {
                         } else {
                             // 계정이 중복된 경우
                             Log.w("계정생성오류", "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(SignUpActivity.this, "이미 존재하는 계정입니다.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpActivity.this, "잘못된 형식이거나\n이미 존재하는 계정입니다.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
