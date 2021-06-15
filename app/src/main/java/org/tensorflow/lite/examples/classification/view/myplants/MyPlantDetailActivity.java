@@ -132,6 +132,11 @@ public class MyPlantDetailActivity extends AppCompatActivity {
                 }else{
                     switchDetail.setChecked(true);
                 }
+                if(switchDetail.isChecked()){
+                    plantWaterText.setEnabled(true);
+                }else{
+                    plantWaterText.setEnabled(false);
+                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) { }

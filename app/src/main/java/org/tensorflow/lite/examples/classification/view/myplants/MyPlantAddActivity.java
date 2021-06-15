@@ -272,10 +272,11 @@ public class MyPlantAddActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O_MR1)
     private void setImage() {
-        Glide.with(this)
-                .load(photoUri)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true)
-                .into(plantImage);
+//        Glide.with(this)
+//                .load(photoUri)
+//                .diskCacheStrategy(DiskCacheStrategy.NONE)
+//                .skipMemoryCache(true)
+//                .into(plantImage);
+        plantImage.setImageURI(photoUri);
     }
 }
