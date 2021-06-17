@@ -23,20 +23,6 @@
         android:layout_above="@id/nav_view" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/textFloating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/galleryFloating"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:clickable="true"
-        android:visibility="invisible"
-        app:backgroundTint="#90C31F"
-        app:fabSize="auto"
-        app:srcCompat="@drawable/text" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/galleryFloating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,9 +32,9 @@
         android:layout_marginBottom="10dp"
         android:clickable="true"
         android:visibility="invisible"
-        app:backgroundTint="@color/tfe_color_primary"
+        app:backgroundTint="#4A8C4A"
         app:fabSize="auto"
-        app:srcCompat="@drawable/album" />
+        app:srcCompat="@drawable/album_white" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/cameraFloating"
@@ -60,9 +46,9 @@
         android:layout_marginBottom="10dp"
         android:clickable="true"
         android:visibility="invisible"
-        app:backgroundTint="@color/tfe_color_primary"
+        app:backgroundTint="#4A8C4A"
         app:fabSize="auto"
-        app:srcCompat="@drawable/camera" />
+        app:srcCompat="@drawable/camera_white" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/mainFloating"
@@ -73,7 +59,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
         android:clickable="true"
-        app:backgroundTint="#90C31F"
+        app:backgroundTint="@color/tfe_color_accent"
         app:fabSize="auto"
         app:srcCompat="@android:drawable/ic_menu_search" />
 

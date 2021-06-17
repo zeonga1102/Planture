@@ -2,11 +2,11 @@
 <resources>
     <color name="tfe_color_primary">#90C31F</color>
     <color name="tfe_color_primary_dark">#ff6f00</color>
-    <color name="tfe_color_accent">#425066</color>
+    <color name="tfe_color_accent">#0A6E0A</color>
 
     <color name="tfe_color_primary1">#ffa800</color>
 
-    <color name="tfe_semi_transparent">#66000000</color>
+    <color name="tfe_semi_transparent">#44000000</color>
 
     <color name="planture_color_primary">#f6fff0</color>
     <color name="black">#FF000000</color>

@@ -92,11 +92,17 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
     final int cropSize = Math.min(previewWidth, previewHeight);
     HashMap<String,String> map = new HashMap<>();
     map.put("0", "스투키");
-    map.put("1", "장미");
-    map.put("2", "해바라기");
-    map.put("3", "폼폼");
-    map.put("4", "카네이션");
-    map.put("5", "명자란");
+    map.put("1", "나팔꽃");
+    map.put("2", "개나리");
+    map.put("3", "튤립");
+    map.put("4", "장미");
+    map.put("5", "해바라기");
+    map.put("6", "백합");
+    map.put("7", "수국");
+    map.put("8", "철쭉");
+    map.put("9", "무궁화");
+    map.put("10", "아이비");
+    map.put("11", "코스모스");
 
     runInBackground(
         new Runnable() {

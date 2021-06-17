@@ -10,6 +10,8 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,6 +41,7 @@ public class ResultActivity extends AppCompatActivity {
 
     private MeasuredViewPager viewPager;
 
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,12 +82,18 @@ public class ResultActivity extends AppCompatActivity {
 
         viewPager = findViewById(R.id.viewPager);
         viewPager.setClipToPadding(false);
-        viewPager.setPadding(230,0,230,0);
-        viewPager.setPageMargin(getResources().getDisplayMetrics().widthPixels / -9);
+//        viewPager.setPadding(230,0,230,0);
+//        viewPager.setPageMargin(getResources().getDisplayMetrics().widthPixels / -9);
         viewPager.setAdapter(new ViewpagerAdapter(this, imgUrls));
 
+        button = findViewById(R.id.btn_result);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
-
 }
 
 class BackgroundTask extends AsyncTask<Integer , Integer , CrawlVo> {
@@ -141,21 +150,21 @@ class BackgroundTask extends AsyncTask<Integer , Integer , CrawlVo> {
         String imgUrl = null;
         CrawlVo vo = new CrawlVo();
 
-            List<String> stringList = new ArrayList<>();
+        List<String> stringList = new ArrayList<>();
 
-            for (int i = 0; i < imgSrcList.size(); i++) {
+        for (int i = 0; i < imgSrcList.size(); i++) {
 
-                imgUrl = imgSrcList.get(i);
+            imgUrl = imgSrcList.get(i);
 //                ImgUrl = new URL(imgSrcList.get(0));
 
 //                Bitmap bmp = BitmapFactory.decodeStream(ImgUrl.openConnection().getInputStream());
-                stringList.add(imgUrl);
+            stringList.add(imgUrl);
 
 
-            }
+        }
 
-            vo.setImgSrcList(stringList);
-            vo.setContents(desc);
+        vo.setImgSrcList(stringList);
+        vo.setContents(desc);
 
 
         return vo;

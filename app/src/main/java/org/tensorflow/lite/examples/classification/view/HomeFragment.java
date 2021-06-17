@@ -37,7 +37,6 @@ public class HomeFragment extends Fragment {
 
     LinearLayout cameraButton;
     LinearLayout albumButton;
-    LinearLayout textButton;
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -50,12 +49,9 @@ public class HomeFragment extends Fragment {
 
         cameraButton = rootView.findViewById(R.id.layout_camera);
         albumButton = rootView.findViewById(R.id.layout_album);
-        textButton = rootView.findViewById(R.id.layout_text);
 
         cameraButton.setOnClickListener(onClickListener);
         albumButton.setOnClickListener(onClickListener);
-        textButton.setOnClickListener(onClickListener);
-
         return rootView;
     }
 
@@ -73,10 +69,6 @@ public class HomeFragment extends Fragment {
                     intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(intent, 1);
                     break;
-                case R.id.layout_text:
-//                    intent = new Intent(rootView.getContext(), ClassifierActivity.class);
-//                    startActivityForResult(intent, 0);
-                    break;
             }
         }
     };
@@ -90,11 +82,17 @@ public class HomeFragment extends Fragment {
             //response에 getData , return data 부분 추가해주어야 한다
             HashMap<String,String> map = new HashMap<>();
             map.put("0", "스투키");
-            map.put("1", "장미");
-            map.put("2", "해바라기");
-            map.put("3", "폼폼");
-            map.put("4", "카네이션");
-            map.put("5", "명자란");
+            map.put("1", "나팔꽃");
+            map.put("2", "개나리");
+            map.put("3", "튤립");
+            map.put("4", "장미");
+            map.put("5", "해바라기");
+            map.put("6", "백합");
+            map.put("7", "수국");
+            map.put("8", "철쭉");
+            map.put("9", "무궁화");
+            map.put("10", "아이비");
+            map.put("11", "코스모스");
 
             Uri photoUri = data.getData();
             //bitmap 이용

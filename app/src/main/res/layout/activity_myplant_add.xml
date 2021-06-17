@@ -9,39 +9,16 @@
         android:weightSum="1"
         tools:context=".view.myplants.MyPlantAddActivity">
 
-        <TextView
-            android:id="@+id/addText"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="식물 등록"
-            android:textSize="18sp" />
-
         <ImageView
             android:id="@+id/edit_plantImage"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:scaleType="centerCrop"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="20dp"
             android:layout_weight="1"
-            android:background="#FFFFFF" />
-
-        <ImageView
-            android:id="@+id/image_add"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/roundspace_btn"
-            android:clickable="true"
-            android:padding="5dp"
-            app:srcCompat="@drawable/image_add" />
+            android:background="#FFFFFF"
+            android:scaleType="centerCrop" />
 
         <View
             android:layout_width="match_parent"
@@ -134,10 +111,9 @@
                 android:layout_marginRight="10dp"
                 android:background="@null"
                 android:gravity="center_vertical"
-                android:hint="물 주기 빈도"
                 android:inputType="text"
-                android:textColor="@color/black"
-                android:textColorHint="#aeaeae"
+                android:text="물 주기 빈도"
+                android:textColor="#000000"
                 android:textSize="18sp" />
 
             <EditText
@@ -146,7 +122,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:inputType="number"
-                android:maxLength="2" />
+                android:maxLength="2"
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/textView"
@@ -155,6 +132,7 @@
                 android:layout_gravity="center"
                 android:layout_marginRight="5dp"
                 android:text="일 마다 한번"
+                android:textColor="#000000"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -177,16 +155,26 @@
 
             <TextView
                 android:id="@+id/registerButton"
-                android:layout_width="100dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="등록"
-                android:textSize="15dp"
                 android:layout_marginLeft="10dp"
-                android:textColor="@color/black"
-                android:gravity="center"
                 android:background="@drawable/roundspace_btn"
-                android:clickable="true"/>
+                android:backgroundTint="@color/tfe_color_primary"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="등 록"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp"
+                android:textStyle="bold" />
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar_myplant_add"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminateOnly="true"
+            android:visibility="gone" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

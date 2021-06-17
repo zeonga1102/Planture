@@ -8,16 +8,40 @@
     android:weightSum="1"
     tools:context=".view.myplants.MyPlantDetailActivity">
 
-    <TextView
-        android:id="@+id/registerDate"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="------------"
-        android:textSize="24sp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/registerDate"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="------------"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="10dp"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="삭제"
+            android:textColor="#FF1F1F"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/plantImage"
@@ -30,16 +54,14 @@
         android:layout_weight="1"
         android:background="#FFFFFF" />
 
-    <ImageView
-        android:id="@+id/imageModi"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center"
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/roundspace_btn"
-        android:clickable="true"
-        android:padding="5dp"
-        app:srcCompat="@drawable/image_add" />
+        android:background="#aeaeae" />
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -63,15 +85,6 @@
             android:layout_height="match_parent" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="#aeaeae" />
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -117,24 +130,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:gravity="right"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginRight="10dp"
+        android:gravity="right"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="41dp"
             android:layout_gravity="center"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="10dp"
-            android:background="@null"
             android:gravity="center_vertical"
-            android:hint="물 주기 빈도"
-            android:inputType="text"
-            android:textColor="@color/black"
-            android:textColorHint="#aeaeae"
+            android:text="물 주기 빈도"
+            android:textColor="#000000"
             android:textSize="18sp" />
 
         <EditText
@@ -143,7 +153,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="number"
-            android:maxLength="2" />
+            android:maxLength="2"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/textView"
@@ -152,6 +163,7 @@
             android:layout_gravity="center"
             android:layout_marginRight="5dp"
             android:text="일 마다 한번"
+            android:textColor="#000000"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -174,27 +186,17 @@
 
         <TextView
             android:id="@+id/modifyButton"
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:background="@drawable/roundspace_btn"
+            android:backgroundTint="@color/tfe_color_primary"
             android:clickable="true"
             android:gravity="center"
-            android:text="수정"
-            android:textColor="@color/black"
+            android:text="수 정"
+            android:textColor="@color/white"
             android:textSize="15dp" />
 
-        <TextView
-            android:id="@+id/deleteButton"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/roundspace_btn"
-            android:clickable="true"
-            android:gravity="center"
-            android:text="삭제"
-            android:textColor="@color/black"
-            android:textSize="15dp" />
     </LinearLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

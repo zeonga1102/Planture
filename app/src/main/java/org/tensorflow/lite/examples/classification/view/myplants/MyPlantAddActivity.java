@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -58,11 +59,12 @@ public class MyPlantAddActivity extends AppCompatActivity {
     EditText plantWaterPeriod;
     TextView registerButton;
     ImageView plantImage;
-    ImageView imageAdd;
     Switch switchAdd;
 
     private File tempFile = null;
     Uri photoUri = null;
+
+    boolean selected = false;
 
     private ActivityMyplantAddBinding binding;
     Context context;
@@ -76,6 +78,8 @@ public class MyPlantAddActivity extends AppCompatActivity {
 
         context = this;
 
+        camera_permission();
+
 //        plantName = findViewById(R.id.edit_plantName);
 //        plantDesc = findViewById(R.id.edit_plantDesc);
 //        registerButton = findViewById(R.id.registerButton);
@@ -87,7 +91,6 @@ public class MyPlantAddActivity extends AppCompatActivity {
         plantWaterPeriod = binding.editPlantWaterPeriod;
         registerButton = binding.registerButton;
         plantImage = binding.editPlantImage;
-        imageAdd = binding.imageAdd;
         switchAdd = binding.switchAdd;
 
         switchAdd.setOnClickListener(new View.OnClickListener() {
@@ -95,8 +98,14 @@ public class MyPlantAddActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(switchAdd.isChecked()){
                     plantWaterPeriod.setEnabled(true);
+
+                    binding.textView.setTextColor(Color.parseColor("#000000"));
+                    binding.textView3.setTextColor(Color.parseColor("#000000"));
                 }else{
                     plantWaterPeriod.setEnabled(false);
+
+                    binding.textView.setTextColor(Color.parseColor("#aeaeae"));
+                    binding.textView3.setTextColor(Color.parseColor("#aeaeae"));
                 }
             }
         });
@@ -104,6 +113,8 @@ public class MyPlantAddActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                binding.progressBarMyplantAdd.setVisibility(View.VISIBLE);
+
                 String name = plantName.getText().toString().trim();
                 String desc = plantDesc.getText().toString();
 
@@ -161,6 +172,7 @@ public class MyPlantAddActivity extends AppCompatActivity {
                                     pushRef.setValue(plant).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
+                                            binding.progressBarMyplantAdd.setVisibility(View.GONE);
                                             finish();
                                         }
                                     });
@@ -172,7 +184,7 @@ public class MyPlantAddActivity extends AppCompatActivity {
             }
         });
 
-        imageAdd.setOnClickListener(new View.OnClickListener() {
+        plantImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 camera_permission();
@@ -240,7 +252,15 @@ public class MyPlantAddActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode != Activity.RESULT_OK) {
+        if(requestCode== 1 && resultCode==RESULT_OK && data!=null) {
+            photoUri = data.getData();
+            setImage();
+            selected = true;
+        }
+        else if(!selected) {
+            finish();
+        }
+        else if (resultCode != Activity.RESULT_OK) {
 
             Toast.makeText(this, "취소되었습니다.", Toast.LENGTH_SHORT).show();
 
@@ -255,11 +275,6 @@ public class MyPlantAddActivity extends AppCompatActivity {
             } else {
             }
             return;
-        }
-
-        if(requestCode== 1 && resultCode==RESULT_OK && data!=null) {
-            photoUri = data.getData();
-            setImage();
         }
     }
 

@@ -17,6 +17,8 @@ public class ViewpagerAdapter extends PagerAdapter {
     private Context ctx;
     private List<String> imgUrls;
 
+    private ImageView imageView;
+
     public ViewpagerAdapter(Context ctx, List<String> imgUrls) {
         this.ctx = ctx;
         this.imgUrls = imgUrls;
@@ -24,13 +26,14 @@ public class ViewpagerAdapter extends PagerAdapter {
 
     public Object instantiateItem(ViewGroup collection, int position) {
         ImageView imageView = new ImageView(ctx);
+
         Picasso.get()
                 .load(imgUrls.get(position))
-                .resize(400, 400)
-                //.transform(PicassoTransformations.resizeTransformation)
+                .resize(800, 800)
                 .centerCrop()
                 .into(imageView);
         collection.addView(imageView);
+
         return imageView;
     }
 
@@ -47,10 +50,5 @@ public class ViewpagerAdapter extends PagerAdapter {
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return view == object;
-    }
-
-    @Override
-    public float getPageWidth(int position) {
-        return (0.9f);
     }
 }

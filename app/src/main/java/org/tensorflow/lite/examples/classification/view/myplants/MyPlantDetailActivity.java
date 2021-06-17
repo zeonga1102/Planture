@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -69,7 +70,6 @@ public class MyPlantDetailActivity extends AppCompatActivity {
     Uri photoUri = null;
 
     private ImageView plantImage;
-    private ImageView imageModi;
     private TextView regDateText;
     private EditText plantNameText;
     private EditText plantDescText;
@@ -77,6 +77,8 @@ public class MyPlantDetailActivity extends AppCompatActivity {
     private TextView modifyButton;
     private TextView deleteButton;
     private Switch switchDetail;
+
+    private TextView textView1, textView2;
 
     Plant plant;
 
@@ -94,7 +96,6 @@ public class MyPlantDetailActivity extends AppCompatActivity {
         key = (String)intent.getExtras().get("key");
 
         plantImage = findViewById(R.id.plantImage);
-        imageModi = findViewById(R.id.imageModi);
         regDateText = findViewById(R.id.registerDate);
         plantNameText = findViewById(R.id.plantName);
         plantDescText = findViewById(R.id.plantDesc);
@@ -102,6 +103,9 @@ public class MyPlantDetailActivity extends AppCompatActivity {
         modifyButton = findViewById(R.id.modifyButton);
         deleteButton = findViewById(R.id.deleteButton);
         switchDetail = findViewById(R.id.switch_detail);
+
+        textView1 = findViewById(R.id.textView3);
+        textView2 = findViewById(R.id.textView);
 
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
@@ -147,8 +151,14 @@ public class MyPlantDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(switchDetail.isChecked()){
                     plantWaterText.setEnabled(true);
+
+                    textView1.setTextColor(Color.parseColor("#000000"));
+                    textView2.setTextColor(Color.parseColor("#000000"));
                 }else{
                     plantWaterText.setEnabled(false);
+
+                    textView1.setTextColor(Color.parseColor("#aeaeae"));
+                    textView2.setTextColor(Color.parseColor("#aeaeae"));
                 }
             }
         });
@@ -221,7 +231,7 @@ public class MyPlantDetailActivity extends AppCompatActivity {
             }
         });
 
-        imageModi.setOnClickListener(new View.OnClickListener() {
+        plantImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
