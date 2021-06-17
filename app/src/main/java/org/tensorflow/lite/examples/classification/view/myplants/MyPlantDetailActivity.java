@@ -118,10 +118,6 @@ public class MyPlantDetailActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 plant = dataSnapshot.getValue(Plant.class);
-//                Picasso.get()   //임의로 이미지 넣어놨음. firebase 연결해서 이미지 받아오면 수정
-//                        .load(plant.getImgUrl())
-//                        .centerCrop()
-//                        .into(plantImage);
                 Glide.with(context)
                         .load(plant.getImgUrl())
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -249,9 +245,7 @@ public class MyPlantDetailActivity extends AppCompatActivity {
                 });
                 builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //Toast.makeText(getApplicationContext(),"Try again!", Toast.LENGTH_LONG).show();
-                    }
+                    public void onClick(DialogInterface dialog, int which) { }
                 });
 
                 AlertDialog alertDialog = builder.create();
@@ -297,17 +291,6 @@ public class MyPlantDetailActivity extends AppCompatActivity {
 
     //이미지피커
     private void image_picker() {
-//        ImagePicker.create(this)
-//                .returnMode(ReturnMode.ALL)
-//                .toolbarImageTitle("Set Profile Image")
-//                .toolbarArrowColor(Color.BLACK)
-//                .includeVideo(false)
-//                .onlyVideo(false)
-//                .single()
-//                .showCamera(true)
-//                .imageDirectory("Camera")
-//                .enableLog(true)
-//                .start();
         Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, 1);
     }

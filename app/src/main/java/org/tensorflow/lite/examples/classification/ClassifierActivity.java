@@ -120,12 +120,6 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
                     @Override
                     public void run() {
                       showResultsInBottomSheet(results);
-                      Log.e("ksy", results.get(0).getTitle()+", "+ results.get(0).getConfidence());
-//                      showFrameInfo(previewWidth + "x" + previewHeight);
-//                      showCropInfo(imageSizeX + "x" + imageSizeY);
-//                      showCameraResolution(cropSize + "x" + cropSize);
-//                      showRotationInfo(String.valueOf(sensorOrientation));
-//                      showInference(lastProcessingTimeMs + "ms");
                     }
                   });
             }

@@ -76,14 +76,6 @@ public class MyPlantsRecyclerViewAdapter extends RecyclerView.Adapter {
         });
     }
 
-//    public void setMyPlants(List<Plant> myPlants){
-//        this.myPlants = myPlants;
-//        for(int i=0; i<myPlants.size(); i++){
-//            this.names.add(myPlants.get(i).getName());
-//            this.imgUrls.add(myPlants.get(i).getImgUrl());
-//        }
-//    }
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -95,22 +87,11 @@ public class MyPlantsRecyclerViewAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ItemMyplantsRecyclerviewBinding binding = ((ViewHolder) holder).getBinding();
 
-//        Picasso.get()   //임의로 이미지 넣어놨음. firebase 연결해서 이미지 받아오면 수정
-//                .load(myPlants.get(position).getImgUrl())
-//                .resize(400, 400)
-//                .centerCrop()
-//                .into(imgMyplatns);
-//        //Glide.with(imgMyplatns.getContext()).load(imgUrls.get(position)).into(imgMyplatns);
-//
-//        String name = myPlants.get(position).getName();
-//        textMyplants.setText(name);
-
         Picasso.get()   //임의로 이미지 넣어놨음. firebase 연결해서 이미지 받아오면 수정
                 .load(myPlants.get(position).getImgUrl())
                 .resize(400, 400)
                 .centerCrop()
                 .into(binding.imgMyplants);
-        //Glide.with(imgMyplatns.getContext()).load(imgUrls.get(position)).into(imgMyplatns);
 
         String name = myPlants.get(position).getName();
         binding.textMyplants.setText(name);
@@ -149,10 +130,6 @@ public class MyPlantsRecyclerViewAdapter extends RecyclerView.Adapter {
             super(itemView);
 
             binding = DataBindingUtil.bind(itemView);
-
-//            imgMyplatns = itemView.findViewById(R.id.img_myplants);
-//            textMyplants = itemView.findViewById(R.id.text_myplants);
-//            panel = itemView.findViewById(R.id.panel_myplants);
         }
 
         ItemMyplantsRecyclerviewBinding getBinding() {

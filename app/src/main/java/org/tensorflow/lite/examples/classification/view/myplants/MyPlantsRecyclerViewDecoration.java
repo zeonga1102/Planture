@@ -13,8 +13,6 @@ public class MyPlantsRecyclerViewDecoration extends RecyclerView.ItemDecoration 
 
     public MyPlantsRecyclerViewDecoration(Activity activity) {
         spanCount = 2;
-//        spacing = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 12, activity.getResources().getDisplayMetrics());
-//        outerMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, activity.getResources().getDisplayMetrics());
     }
 
     @Override

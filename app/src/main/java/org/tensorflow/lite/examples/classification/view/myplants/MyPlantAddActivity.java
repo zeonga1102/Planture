@@ -72,19 +72,12 @@ public class MyPlantAddActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_myplant_add);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_myplant_add);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         context = this;
 
         camera_permission();
-
-//        plantName = findViewById(R.id.edit_plantName);
-//        plantDesc = findViewById(R.id.edit_plantDesc);
-//        registerButton = findViewById(R.id.registerButton);
-//        plantImage = findViewById(R.id.edit_plantImage);
-//        image_add = findViewById(R.id.image_add);
 
         plantName = binding.editPlantName;
         plantDesc = binding.editPlantDesc;
@@ -230,17 +223,6 @@ public class MyPlantAddActivity extends AppCompatActivity {
 
     //이미지피커
     private void image_picker() {
-//        ImagePicker.create(this)
-//                .returnMode(ReturnMode.ALL)
-//                .toolbarImageTitle("Set Profile Image")
-//                .toolbarArrowColor(Color.BLACK)
-//                .includeVideo(false)
-//                .onlyVideo(false)
-//                .single()
-//                .showCamera(true)
-//                .imageDirectory("Camera")
-//                .enableLog(true)
-//                .start();
         Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, 1);
     }
@@ -287,11 +269,6 @@ public class MyPlantAddActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O_MR1)
     private void setImage() {
-//        Glide.with(this)
-//                .load(photoUri)
-//                .diskCacheStrategy(DiskCacheStrategy.NONE)
-//                .skipMemoryCache(true)
-//                .into(plantImage);
         plantImage.setImageURI(photoUri);
     }
 }

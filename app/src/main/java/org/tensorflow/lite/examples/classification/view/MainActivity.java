@@ -54,10 +54,6 @@ public class MainActivity extends AppCompatActivity {
         mainContext = this;
         dateReceiver = new DateReceiver();
 
-//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("myPlant");
-//        databaseReference.push().setValue(new Plant("산체스","https://commons.wikimedia.org/wiki/File:Helianthus_annuus_00001.jpg"));
-//        databaseReference.keepSynced(true);
-
 
         //floating action button==================================================
         fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);

@@ -81,7 +81,6 @@ public class MyplantsFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(rootView.getContext(), MyPlantAddActivity.class);
                 startActivity(intent);
-                //getActivity().finish();
             }
         });
 
@@ -125,29 +124,6 @@ public class MyplantsFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) { }
         });
-
-//        myplantRef.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                myPlants.clear();
-//                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-//                    Plant plant = snapshot.getValue(Plant.class);
-//                    myPlants.add(0, plant);
-//                    Log.i("plantSize",Integer.toString(myPlants.size()));
-//                }
-//                RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
-//                recyclerView.setLayoutManager(layoutManager);
-//
-//                recyclerView.addItemDecoration(new MyPlantsRecyclerViewDecoration(getActivity()));
-//
-//                adapter.setMyPlants(myPlants);
-//                adapter.notifyDataSetChanged();
-//
-//                recyclerView.setAdapter(adapter);
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) { }
-//        });
     }
 
     private void init(View view){

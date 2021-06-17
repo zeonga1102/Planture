@@ -46,33 +46,21 @@ public class ResultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        map.put("0", "스투키");
-//        map.put("1", "장미");
-//        map.put("2", "해바라기");
-//        map.put("3", "폼폼");
-//        map.put("4", "카네이션");
-//        map.put("5", "명자란");
-
         setContentView(R.layout.activity_result);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         Intent intent = getIntent();
-        //String result = (String)intent.getExtras().get("result");
         String flowerName = (String)intent.getExtras().get("result");
-        //String flowerName = map.get(result);
 
         TextView textExplain = findViewById(R.id.text_explain);
         TextView textName = findViewById(R.id.text_name);
 
         textName.setText(flowerName);
 
-        //ImageView imageView = findViewById(R.id.img_input);
-
         BackgroundTask async=new BackgroundTask(flowerName);
         try {
             CrawlVo vo = async.execute().get();
             imgUrls = vo.getImgSrcList();
-//            picture.setImageBitmap(vo.getImgSrcList().get(2));
             textExplain.setText(vo.getContents());
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -82,8 +70,6 @@ public class ResultActivity extends AppCompatActivity {
 
         viewPager = findViewById(R.id.viewPager);
         viewPager.setClipToPadding(false);
-//        viewPager.setPadding(230,0,230,0);
-//        viewPager.setPageMargin(getResources().getDisplayMetrics().widthPixels / -9);
         viewPager.setAdapter(new ViewpagerAdapter(this, imgUrls));
 
         button = findViewById(R.id.btn_result);
@@ -155,9 +141,6 @@ class BackgroundTask extends AsyncTask<Integer , Integer , CrawlVo> {
         for (int i = 0; i < imgSrcList.size(); i++) {
 
             imgUrl = imgSrcList.get(i);
-//                ImgUrl = new URL(imgSrcList.get(0));
-
-//                Bitmap bmp = BitmapFactory.decodeStream(ImgUrl.openConnection().getInputStream());
             stringList.add(imgUrl);
 
 
